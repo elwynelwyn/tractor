@@ -5,7 +5,8 @@ import angular from 'angular';
 import ASTCreatorService from '../../../Core/Services/ASTCreatorService';
 
 function createMockModelConstructor (
-    astCreatorService
+    astCreatorService,
+    config
 ) {
     const step = Symbol();
 
@@ -34,14 +35,17 @@ function createMockModelConstructor (
     }
 
     function toAST () {
+        debugger
         let data = {
             url: astCreatorService.literal(new RegExp(this.url))
         };
-        let template = `httpBackend.when${this.action}(%= url %)`;
+        let responseHeaders = config.responseHeaders || {};
+
+        let template = `httpBackend.when('${this.action}', %= url %)`;
         if (this.passThrough) {
             template += '.passThrough(); ';
         } else {
-            template += '.respond(%= dataName %); ';
+            template += `.respond(function () { return [200, %= dataName %, {}]; }); `;
             data.dataName = astCreatorService.identifier(this.data.variableName);
         }
 

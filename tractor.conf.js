@@ -32,5 +32,8 @@ export default {
         .then(() => del(TRACTOR_E2E_TESTS_RUNNING, {
             force: true
         }));
-	}
+	},
+    responseHeaders: {
+        'x-foo': 'bar'
+    }
 };
