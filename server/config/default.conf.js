@@ -13,6 +13,5 @@ export default {
         'http://localhost:8080'
     ],
     beforeProtractor: _.noop,
-    afterProtractor: _.noop,
-    responseHeaders: {}
+    afterProtractor: _.noop
 };

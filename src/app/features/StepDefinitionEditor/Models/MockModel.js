@@ -35,17 +35,15 @@ function createMockModelConstructor (
     }
 
     function toAST () {
-        debugger
         let data = {
             url: astCreatorService.literal(new RegExp(this.url))
         };
-        let responseHeaders = config.responseHeaders || {};
 
-        let template = `httpBackend.when('${this.action}', %= url %)`;
+        let template = `httpBackend.when${this.action}(%= url %)`;
         if (this.passThrough) {
             template += '.passThrough(); ';
         } else {
-            template += `.respond(function () { return [200, %= dataName %, {}]; }); `;
+            template += `.respond(function () { return [200, %= dataName %, { 'x-trademe-previewaccess': 'preview' }]; }); `;
             data.dataName = astCreatorService.identifier(this.data.variableName);
         }
 
