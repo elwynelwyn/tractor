@@ -138,13 +138,19 @@ describe('ComponentParserService.js:', () => {
             expect(elementModel1.minimised).to.equal(true);
             expect(elementModel2.name).to.equal('element 2');
             expect(elementModel2.minimised).to.equal(false);
+            /* eslint-disable no-magic-numbers */
             expect(component.elements.length).to.equal(3);
             expect(component.domElements.length).to.equal(2);
+            /* eslint-enable no-magic-numbers */
         });
 
         it('should attempt to parse each statement into an `ActionModel`', () => {
-            let statement1 = {};
-            let statement2 = {};
+            let statement1 = {
+                expression: {}
+            };
+            let statement2 = {
+                expression: {}
+            };
             let ast = {
                 body: [{
                     expression: {

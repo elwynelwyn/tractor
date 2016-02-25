@@ -7,7 +7,6 @@ import ServerStatusService from './Services/ServerStatusService';
 
 // Symbols:
 const environments = Symbol();
-const environment = Symbol();
 
 class ControlPanelController {
     constructor (
@@ -19,17 +18,13 @@ class ControlPanelController {
         this.serverStatusService = serverStatusService;
         this[environments] = config.environments;
         let [environment] = this.environments;
-        this[environment] = environment;
+        this.environment = environment;
 
         this.serverStatusService.monitorServerStatus();
     }
 
     get environments () {
         return this[environments];
-    }
-
-    get environment () {
-        return this[environment];
     }
 
     get isServerRunning () {

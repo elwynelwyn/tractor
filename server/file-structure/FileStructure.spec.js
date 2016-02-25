@@ -235,11 +235,9 @@ describe('server/file-structure: FileStructure:', () => {
 
             return fileStructure.copyFile(path.join('path', 'to', 'something', 'that', 'doesnt', 'exist'))
             .catch((error) => {
-                expect(error).to.deep.equal({
-                    name: 'TractorError',
-                    message: path.join(`Could not find "${path.join('path', 'to', 'something', 'that', 'doesnt', 'exist')}"`),
-                    status: constants.FILE_NOT_FOUND_ERROR
-                });
+                expect(error.name).to.equal('TractorError');
+                expect(error.message).to.equal(path.join(`Could not find "${path.join('path', 'to', 'something', 'that', 'doesnt', 'exist')}"`));
+                expect(error.status).to.equal(constants.FILE_NOT_FOUND_ERROR);
             });
         });
     });
@@ -310,11 +308,9 @@ describe('server/file-structure: FileStructure:', () => {
 
             return fileStructure.deleteItem(path.join('path', 'to', 'something', 'that', 'doesnt', 'exist'))
             .catch((error) => {
-                expect(error).to.deep.equal({
-                    name: 'TractorError',
-                    message: `Could not find "${path.join('path', 'to', 'something', 'that', 'doesnt', 'exist')}"`,
-                    status: constants.FILE_NOT_FOUND_ERROR
-                });
+                expect(error.name).to.equal('TractorError');
+                expect(error.message).to.equal(path.join(`Could not find "${path.join('path', 'to', 'something', 'that', 'doesnt', 'exist')}"`));
+                expect(error.status).to.equal(constants.FILE_NOT_FOUND_ERROR);
             });
         });
     });
@@ -342,11 +338,9 @@ describe('server/file-structure: FileStructure:', () => {
 
             return fileStructure.openFile(path.join('path', 'to', 'something', 'that', 'doesnt', 'exist'))
             .catch((error) => {
-                expect(error).to.deep.equal({
-                    name: 'TractorError',
-                    message: `Could not find "${path.join('path', 'to', 'something', 'that', 'doesnt', 'exist')}"`,
-                    status: constants.FILE_NOT_FOUND_ERROR
-                });
+                expect(error.name).to.equal('TractorError');
+                expect(error.message).to.equal(path.join(`Could not find "${path.join('path', 'to', 'something', 'that', 'doesnt', 'exist')}"`));
+                expect(error.status).to.equal(constants.FILE_NOT_FOUND_ERROR);
             });
         });
     });

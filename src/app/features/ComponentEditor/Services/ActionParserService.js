@@ -40,7 +40,7 @@ class ActionParserService {
 }
 
 function parseParameters (action, params, meta) {
-    params.forEach(param => {
+    params.forEach(() => {
         let parameter = this.parameterParserService.parse(action);
         assert(parameter);
         parameter.name = meta.parameters[action.parameters.length].name;

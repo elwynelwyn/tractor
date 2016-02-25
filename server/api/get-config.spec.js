@@ -4,15 +4,13 @@
 // Utilities:
 import _ from 'lodash';
 import chai from 'chai';
+import mockery from 'mockery';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
 // Test setup:
 const expect = chai.expect;
 chai.use(sinonChai);
-
-// Dependencies:
-import config from '../config';
 
 // Under test:
 import getConfig from './get-config';
@@ -23,8 +21,10 @@ describe('server/api: get-config', () => {
         let response = {
             send: _.noop
         };
-        let oldConfig = config.config;
-        config.config = {};
+        mockery.enable();
+        mockery.registerMock('../config/config', {
+            default: {}
+        });
 
         sinon.stub(response, 'send');
 
@@ -32,6 +32,7 @@ describe('server/api: get-config', () => {
 
         expect(response.send).to.have.been.calledWith({});
 
-        config.config = oldConfig;
+        mockery.deregisterMock('../config/config');
+        mockery.disable();
     });
 });

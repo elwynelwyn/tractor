@@ -215,7 +215,7 @@ describe('ActionModel.js:', () => {
             let [interactionOne] = actionModel.interactions;
             interactionOne.element = element;
             actionModel.addInteraction();
-            let [interactionTwo] = actionModel.interactions.slice(-1);
+            let [interactionTwo] = actionModel.interactions.slice().reverse();
             interactionTwo.element = element;
             let { ast } = actionModel;
 
@@ -260,7 +260,7 @@ describe('ActionModel.js:', () => {
             let [interactionOne] = actionModel.interactions;
             interactionOne.element = element;
             actionModel.addInteraction();
-            let [interactionTwo] = actionModel.interactions.slice(-1);
+            let [interactionTwo] = actionModel.interactions.slice().reverse();
             interactionTwo.element = element;
             let { ast } = actionModel;
 
@@ -312,7 +312,7 @@ describe('ActionModel.js:', () => {
             let [interactionOne] = actionModel.interactions;
             interactionOne.element = element;
             actionModel.addInteraction();
-            let [interactionTwo] = actionModel.interactions.slice(-1);
+            let [interactionTwo] = actionModel.interactions.slice().reverse();
             interactionTwo.element = element;
             let { ast } = actionModel;
 

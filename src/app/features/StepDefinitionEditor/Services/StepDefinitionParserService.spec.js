@@ -7,6 +7,7 @@ import 'angular-mocks';
 
 // Utilities:
 import chai from 'chai';
+import sinon from 'sinon';
 
 // Test setup:
 const expect = chai.expect;
@@ -146,7 +147,7 @@ describe('StepDefinitionParserService.js:', () => {
 
             sinon.stub(StepDefinitionModel.prototype, 'addComponent');
 
-            let stepDefinitionModel = stepDefinitionParserService.parse(stepDefinitionFile);
+            stepDefinitionParserService.parse(stepDefinitionFile);
 
             expect(StepDefinitionModel.prototype.addComponent).to.have.been.calledWith('Component');
 
@@ -189,7 +190,7 @@ describe('StepDefinitionParserService.js:', () => {
 
             sinon.stub(StepDefinitionModel.prototype, 'addMock');
 
-            let stepDefinitionModel = stepDefinitionParserService.parse(stepDefinitionFile);
+            stepDefinitionParserService.parse(stepDefinitionFile);
 
             expect(StepDefinitionModel.prototype.addMock).to.have.been.calledWith('Mock Data');
 

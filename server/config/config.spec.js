@@ -38,7 +38,9 @@ describe('server/config: config:', () => {
         sinon.stub(path, 'join').returns('./mock.conf');
         mockery.enable();
         mockery.registerMock('./mock.conf', {
-            testDirectory: './tests'
+            default: {
+                testDirectory: './tests'
+            }
         });
 
         let config = createConfig();
@@ -54,7 +56,9 @@ describe('server/config: config:', () => {
         sinon.stub(path, 'join').returns('./mock.conf');
         mockery.enable();
         mockery.registerMock('./mock.conf', {
-            testDirectory: './tests'
+            default: {
+                testDirectory: './tests'
+            }
         });
 
         let config = createConfig();

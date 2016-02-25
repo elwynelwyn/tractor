@@ -52,8 +52,7 @@ function startProtractor (socket, runOptions) {
     let resolve;
     let reject;
     let deferred = new Promise((...args) => {
-        resolve = args[0];
-        reject = args[1];
+        [resolve, reject] = args;
     });
 
     if (_.isUndefined(runOptions.baseUrl)) {

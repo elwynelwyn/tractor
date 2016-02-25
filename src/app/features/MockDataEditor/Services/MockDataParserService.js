@@ -1,5 +1,8 @@
 'use strict';
 
+// Utilities:
+import assert from 'assert';
+
 // Dependencies:
 import angular from 'angular';
 import MockDataModel from '../Models/MockDataModel';

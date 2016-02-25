@@ -160,12 +160,10 @@ describe('StepDefinitionModel.js:', () => {
         });
     });
 
-
-
     describe('StepDefinitionModel.ast:', () => {
         it('should be the AST of the StepDefinition', () => {
             let options = {
-                path:'some/path/to/step definition'
+                path: 'some/path/to/step definition'
             };
             let stepDefinitionModel = new StepDefinitionModel(options);
             stepDefinitionModel.name = 'step definition';
@@ -197,7 +195,7 @@ describe('StepDefinitionModel.js:', () => {
                     path: 'some/path/to/component',
                     variableName: 'Component'
                 }],
-                path:'some/path/to/step definition'
+                path: 'some/path/to/step definition'
             };
             let stepDefinitionModel = new StepDefinitionModel(options);
             stepDefinitionModel.name = 'step definition';
@@ -235,7 +233,7 @@ describe('StepDefinitionModel.js:', () => {
                     path: 'some/path/to/component',
                     variableName: 'Component'
                 }],
-                path:'some/path/to/step definition'
+                path: 'some/path/to/step definition'
             };
             let stepDefinitionModel = new StepDefinitionModel(options);
             stepDefinitionModel.name = 'step definition';

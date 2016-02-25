@@ -58,7 +58,7 @@ function tryParse (stepDefinition, statements, meta, parsers) {
 }
 
 function parseComponent (stepDefinition, statement, meta) {
-    let [declarator] = statement.declarations.slice(-1);
+    let [declarator] = statement.declarations.slice().reverse();
     let name = declarator.init.callee.name;
     assert(name !== 'require');
     stepDefinition.addComponent(meta.components[stepDefinition.components.length].name);

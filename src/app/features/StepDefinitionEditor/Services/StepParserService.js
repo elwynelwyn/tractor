@@ -31,7 +31,7 @@ class StepParserService {
             step.type = parseType(step, stepCallExpression);
             step.regex = parseRegex(step, stepCallExpression);
 
-            let [stepFunction] = ast.expression.arguments.slice(-1);
+            let [stepFunction] = ast.expression.arguments.slice().reverse();
             let statements = stepFunction.body.body;
             let parsers = [parseMock, parseTask, parseExpectation, parsePending, parseMockDone, parseTaskDone];
             tryParse.call(this, step, statements, parsers);

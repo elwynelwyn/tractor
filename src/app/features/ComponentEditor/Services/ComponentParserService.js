@@ -84,6 +84,7 @@ function parseElement (component, statement, meta, state) {
 
 function parseAction (component, statement, meta, state) {
     let actionMeta = meta.actions[component.actions.length];
+    assert(statement.expression);
     let action = this.actionParserService.parse(component, statement, actionMeta);
     assert(action);
     action.name = actionMeta.name;

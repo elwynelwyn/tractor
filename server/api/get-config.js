@@ -1,10 +1,8 @@
 'use strict';
 
-// Constants:
-import config from '../config/config';
-
 export default { handler };
 
 function handler (request, response) {
-    response.send(config);
+    const config = require('../config/config');
+    response.send(config.default);
 }

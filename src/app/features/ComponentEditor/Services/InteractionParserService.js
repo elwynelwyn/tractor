@@ -113,7 +113,7 @@ function parseInteraction (action, interaction, parseState) {
         return arg;
     });
     interaction.methodInstance.arguments = args;
-    action.addInteraction(interaction);
+    action.interactions.push(interaction);
 }
 
 export default angular.module('tractor.interactionParserService', [

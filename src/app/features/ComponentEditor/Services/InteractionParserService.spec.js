@@ -47,7 +47,8 @@ describe('InteractionParserService.js:', () => {
                 methods: [get]
             };
             let action = {
-                component: { browser }
+                component: { browser },
+                interactions: []
             };
             let ast = {
                 argument: {
@@ -73,12 +74,11 @@ describe('InteractionParserService.js:', () => {
                 }
             };
 
-            action.addInteraction = angular.noop;
-            sinon.stub(action, 'addInteraction');
+            sinon.stub(action.interactions, 'push');
 
             interactionParserService.parse(action, ast);
 
-            expect(action.addInteraction).to.have.been.called();
+            expect(action.interactions.push).to.have.been.called();
         });
 
         it('should recursively parse nested interactions', () => {
@@ -89,7 +89,8 @@ describe('InteractionParserService.js:', () => {
                 methods: [get]
             };
             let action = {
-                component: { browser }
+                component: { browser },
+                interactions: []
             };
             let ast = {
                 argument: {
@@ -137,12 +138,11 @@ describe('InteractionParserService.js:', () => {
                 }
             };
 
-            action.addInteraction = angular.noop;
-            sinon.stub(action, 'addInteraction');
+            sinon.stub(action.interactions, 'push');
 
             interactionParserService.parse(action, ast);
 
-            expect(action.addInteraction).to.have.been.calledTwice();
+            expect(action.interactions.push).to.have.been.calledTwice();
         });
 
         it('should parse an `return new Promise()` interaction', () => {
@@ -153,7 +153,8 @@ describe('InteractionParserService.js:', () => {
                 methods: [get]
             };
             let action = {
-                component: { browser }
+                component: { browser },
+                interactions: []
             };
             let ast = {
                 argument: {
@@ -179,11 +180,10 @@ describe('InteractionParserService.js:', () => {
                 }
             };
 
-            action.addInteraction = angular.noop;
-            sinon.stub(action, 'addInteraction');
+            sinon.stub(action.interactions, 'push');
 
             interactionParserService.parse(action, ast);
-            let [interaction] = action.addInteraction.getCall(0).args;
+            let [interaction] = action.interactions.push.getCall(0).args;
 
             expect(interaction.element).to.equal(browser);
             expect(interaction.method).to.equal(get);
@@ -197,7 +197,8 @@ describe('InteractionParserService.js:', () => {
                 methods: [get]
             };
             let action = {
-                component: { browser }
+                component: { browser },
+                interactions: []
             };
             let ast = {
                 argument: {
@@ -213,11 +214,10 @@ describe('InteractionParserService.js:', () => {
                 }
             };
 
-            action.addInteraction = angular.noop;
-            sinon.stub(action, 'addInteraction');
+            sinon.stub(action.interactions, 'push');
 
             interactionParserService.parse(action, ast);
-            let interaction = action.addInteraction.getCall(0).args[0];
+            let interaction = action.interactions.push.getCall(0).args[0];
 
             expect(interaction.element).to.equal(browser);
             expect(interaction.method).to.equal(get);
@@ -231,7 +231,8 @@ describe('InteractionParserService.js:', () => {
                 methods: [get]
             };
             let action = {
-                component: { browser }
+                component: { browser },
+                interactions: []
             };
             let ast = {
                 argument: {
@@ -265,11 +266,10 @@ describe('InteractionParserService.js:', () => {
                 }
             };
 
-            action.addInteraction = angular.noop;
-            sinon.stub(action, 'addInteraction');
+            sinon.stub(action.interactions, 'push');
 
             interactionParserService.parse(action, ast);
-            let interaction = action.addInteraction.getCall(0).args[0];
+            let interaction = action.interactions.push.getCall(0).args[0];
 
             expect(interaction.element).to.equal(browser);
             expect(interaction.method).to.equal(get);
@@ -283,7 +283,8 @@ describe('InteractionParserService.js:', () => {
                 methods: [get]
             };
             let action = {
-                component: { browser }
+                component: { browser },
+                interactions: []
             };
             let ast = {
                 argument: {
@@ -307,11 +308,10 @@ describe('InteractionParserService.js:', () => {
                 }
             };
 
-            action.addInteraction = angular.noop;
-            sinon.stub(action, 'addInteraction');
+            sinon.stub(action.interactions, 'push');
 
             interactionParserService.parse(action, ast);
-            let interaction = action.addInteraction.getCall(0).args[0];
+            let interaction = action.interactions.push.getCall(0).args[0];
 
             expect(interaction.element).to.equal(browser);
             expect(interaction.method).to.equal(get);
@@ -328,7 +328,8 @@ describe('InteractionParserService.js:', () => {
             let action = {
                 component: {
                     elements: [element]
-                }
+                },
+                interactions: []
             };
             let ast = {
                 argument: {
@@ -356,11 +357,10 @@ describe('InteractionParserService.js:', () => {
                 }
             };
 
-            action.addInteraction = angular.noop;
-            sinon.stub(action, 'addInteraction');
+            sinon.stub(action.interactions, 'push');
 
             interactionParserService.parse(action, ast);
-            let [interaction] = action.addInteraction.getCall(0).args;
+            let [interaction] = action.interactions.push.getCall(0).args;
 
             expect(interaction.element).to.equal(element);
             expect(interaction.method).to.equal(method);
@@ -376,6 +376,7 @@ describe('InteractionParserService.js:', () => {
             };
             let action = {
                 component: { browser },
+                interactions: [],
                 parameters: []
             };
             let ast = {
@@ -403,13 +404,12 @@ describe('InteractionParserService.js:', () => {
             };
 
             let argument = {};
-            action.addInteraction = angular.noop;
-            sinon.stub(action, 'addInteraction');
+            sinon.stub(action.interactions, 'push');
             argumentParserService.parse = angular.noop;
             sinon.stub(argumentParserService, 'parse').returns(argument);
 
             interactionParserService.parse(action, ast);
-            let [interaction] = action.addInteraction.getCall(0).args;
+            let [interaction] = action.interactions.push.getCall(0).args;
             let [argumentModel] = interaction.methodInstance.arguments
 
             expect(argumentModel).to.equal(argument);
@@ -425,6 +425,7 @@ describe('InteractionParserService.js:', () => {
             };
             let action = {
                 component: { browser },
+                interactions: [],
                 parameters: [{
                     name: 'argument',
                     variableName: 'argument'
@@ -457,13 +458,12 @@ describe('InteractionParserService.js:', () => {
             let argument = {
                 value: 'argument'
             };
-            action.addInteraction = angular.noop;
-            sinon.stub(action, 'addInteraction');
+            sinon.stub(action.interactions, 'push');
             argumentParserService.parse = angular.noop;
             sinon.stub(argumentParserService, 'parse').returns(argument);
 
             interactionParserService.parse(action, ast);
-            let [interaction] = action.addInteraction.getCall(0).args;
+            let [interaction] = action.interactions.push.getCall(0).args;
             let [argumentModel] = interaction.methodInstance.arguments
 
             expect(argumentModel.value).to.equal('argument');

@@ -20,4 +20,4 @@ export default angular.module('tractor.componentFileService', [
     ComponentParserService.name,
     FileStructureService.name
 ])
-.service('componentFileService', () => new ComponentFileService());
+.service('componentFileService', ComponentFileService);

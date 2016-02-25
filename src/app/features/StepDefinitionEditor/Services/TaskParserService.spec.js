@@ -7,6 +7,7 @@ import 'angular-mocks';
 
 // Utilities:
 import chai from 'chai';
+import sinon from 'sinon';
 
 // Test setup:
 const expect = chai.expect;

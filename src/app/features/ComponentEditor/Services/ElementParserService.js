@@ -60,12 +60,11 @@ function parseNestedElement (component, element, parseState) {
         parseState.expression = expression.callee.object;
     } catch (e) {}
 
-    this.parse(component, {
+    return this.parse(component, {
         expression: {
             right: parseState.callee.object
         }
     }, element);
-    return true;
 }
 
 function parseFirstElement (component, element, parseState) {

@@ -1,5 +1,11 @@
 'use strict';
 
+// Constants:
+const FULL_WIDTH = 100;
+const HANDLE_WIDTH = 0.25;
+const MAX_POSITION = 70;
+const MIN_POSITION = 10;
+
 // Dependencies:
 import angular from 'angular';
 import PersistentStateService from '../../Services/PersistentStateService';
@@ -23,7 +29,7 @@ class PanelHandleDirective {
             let panelName = $attrs.panelName;
 
             let [beforeElement] = $siblings;
-            let [afterElement] = $siblings.slice(-1);
+            let [afterElement] = $siblings.slice().reverse();
 
             $handle.data('parent', parent);
             $handle.data('beforeElement', beforeElement);
@@ -66,10 +72,10 @@ function mousemove (event) {
     let beforeElement = $handle.data('beforeElement');
     let afterElement = $handle.data('afterElement');
     let containerWidth = parseFloat(window.getComputedStyle(parent).width);
-    let percent = Math.max(10, event.clientX / containerWidth * 100);
-    percent = Math.min(percent, 70);
+    let percent = Math.max(MIN_POSITION, event.clientX / containerWidth * FULL_WIDTH);
+    percent = Math.min(percent, MAX_POSITION);
     beforeElement.style.width = `${percent}%`;
-    afterElement.style.width = `${100 - 0.25 - percent}%`;
+    afterElement.style.width = `${FULL_WIDTH - HANDLE_WIDTH - percent}%`;
 }
 
 function mouseup () {

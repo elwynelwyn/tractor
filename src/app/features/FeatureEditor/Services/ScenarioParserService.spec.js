@@ -115,7 +115,7 @@ describe('ScenarioParserService.js:', () => {
 
         it('should bail out and return `null` when it cannot parse', () => {
             let tokens = {
-                name: 'scenario',
+                name: 'scenario'
             };
 
             sinon.stub(console, 'warn');

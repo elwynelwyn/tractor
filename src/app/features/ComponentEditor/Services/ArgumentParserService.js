@@ -29,7 +29,7 @@ class ArgumentParserService {
 
 function parseValue (argument, ast) {
     argument.value = ast.name || ast.value;
-    assert(argument.value != null);
+    assert(argument.value !== undefined);
 }
 
 export default angular.module('argumentParserService', [

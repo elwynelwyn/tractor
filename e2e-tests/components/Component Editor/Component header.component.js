@@ -1,45 +1,4 @@
-/*{
-    "name": "Component header",
-    "elements": [
-        {
-            "name": "Name"
-        },
-        {
-            "name": "Name input"
-        },
-        {
-            "name": "Name validation"
-        },
-        {
-            "name": "Save button"
-        },
-        {
-            "name": "hi jeremy"
-        }
-    ],
-    "actions": [
-        {
-            "name": "get name",
-            "parameters": []
-        },
-        {
-            "name": "set name",
-            "parameters": [
-                {
-                    "name": "name"
-                }
-            ]
-        },
-        {
-            "name": "get validation",
-            "parameters": []
-        },
-        {
-            "name": "save",
-            "parameters": []
-        }
-    ]
-}*/
+/*{"name":"Component header","elements":[{"name":"Name"},{"name":"Name input"},{"name":"Name validation"},{"name":"Save button"}],"actions":[{"name":"get name","parameters":[]},{"name":"set name","parameters":[{"name":"name"}]},{"name":"get validation","parameters":[]},{"name":"save","parameters":[]}]}*/
 module.exports = function () {
     var ComponentHeader = function ComponentHeader() {
         this.name = element(by.css('.file-options__name'));

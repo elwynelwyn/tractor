@@ -54,7 +54,7 @@ function parseAction (mock, mockCallExpression) {
 }
 
 function parseUrl (mock, mockCallExpression) {
-    let [argument] = mockCallExpression.callee.object.arguments.slice(-1);
+    let [argument] = mockCallExpression.callee.object.arguments.slice().reverse();
     let url = argument.raw;
     let urlRegex = new RegExp(url.replace(/^\//, '').replace(/\/$/, ''));
     assert(urlRegex);
